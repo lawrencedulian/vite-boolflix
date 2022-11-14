@@ -3,11 +3,12 @@ import axios from "axios";
 import { store } from "./store";
 
 import AppSearch from "./components/AppSearch.vue";
-
+import moviesList from "./components/moviesList.vue";
 
 export default {
     components: {
-        AppSearch
+        AppSearch,
+        moviesList
     },
     data() {
         return {
@@ -15,20 +16,14 @@ export default {
         }
     },
     created() {
-        this.getFilms()
+        this.getMovies()
     },
     methods: {
-        getFilms() {
-            const paramsUrl = {}
-            if (this.store.searchInput) {
-                paramsUrl.title = this.store.searchInput
-            }
-
-            axios.get(`https://api.themoviedb.org/3/movie?api_key=${this.store.apiKey}&query=${this.store.searchInput}`, {
-                params: paramsUrl
-            })
+        getMovies() {
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.store.apiKey}&query=${this.store.searchInput}`)
                 .then((resp) => {
-                    this.store.films = resp.data.results;
+                    this.store.movies = resp.data.results;
+                    console.log(this.store.movies);
                 })
         }
 
@@ -37,5 +32,8 @@ export default {
 </script>
 
 <template>
-    <AppSearch />
+    <AppSearch @startSearch="getMovies" />
+    <div class="container">
+        <moviesList />
+    </div>
 </template>
