@@ -18,13 +18,14 @@ export default {
         getOriginalTitle() {
             return this.item.original_title ? this.item.original_title : this.item.original_name;
         },
-        getStars() {
+        getStars(item) {
             return Math.ceil(item.vote_average / 2)
         }
     },
     methods: {
         getImage(posterPath) {
             return new URL(`${this.store.imageUrl}/${this.store.posterSize}/${posterPath}`)
+
         }
 
     }
@@ -41,7 +42,8 @@ export default {
             <h5>{{ getOriginalTitle }}</h5>
             <h5>{{ item.original_language }}</h5>
             <h5>{{ Math.ceil(item.vote_average / 2) }}</h5>
-            <!-- <font-awesome-icon v-for="n in 5" :key="n" :icon="n <= getStars ? 'fa-solid' : 'fa-regular'" icon="fa-star"></font-awesome-icon> -->
+            <font-awesome-icon v-for="n in 5" :key="n" :icon="n <= getStars(this.item) ? 'fa-solid' : 'fa-regular'">
+            </font-awesome-icon>
         </div>
     </div>
 </template>
