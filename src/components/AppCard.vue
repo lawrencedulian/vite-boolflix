@@ -17,15 +17,15 @@ export default {
         },
         getOriginalTitle() {
             return this.item.original_title ? this.item.original_title : this.item.original_name;
-        },
-        getStars(item) {
-            return Math.ceil(item.vote_average / 2)
         }
     },
     methods: {
         getImage(posterPath) {
             return new URL(`${this.store.imageUrl}/${this.store.posterSize}/${posterPath}`)
 
+        },
+        getStars() {
+            return Math.ceil(this.item.vote_average / 2)
         }
 
     }
@@ -41,18 +41,14 @@ export default {
             <h4>{{ getTitle }}</h4>
             <h5>{{ getOriginalTitle }}</h5>
             <h5>{{ item.original_language }}</h5>
-            <h5>{{ Math.ceil(item.vote_average / 2) }}</h5>
-            <font-awesome-icon v-for="n in 5" :key="n" :icon="n <= getStars(this.item) ? 'fa-solid' : 'fa-regular'">
+            <font-awesome-icon v-for="n in 5" :key="n"
+                :icon="n <= getStars() ? 'fa-solid fa-star' : 'fa-regular fa-star'">
             </font-awesome-icon>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-.active {
-    color: black;
-}
-
 .my-card {
     perspective: 1000px;
     width: 100%;

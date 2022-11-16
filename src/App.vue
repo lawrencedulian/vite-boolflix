@@ -21,14 +21,12 @@ export default {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.store.apiKey}&query=${this.store.searchInput}`)
                 .then((resp) => {
                     this.store.movies = resp.data.results;
-                    console.log(this.store.movies);
                 })
 
             // SERIES LIST
             axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${this.store.apiKey}&query=${this.store.searchInput}`)
                 .then((resp) => {
                     this.store.series = resp.data.results;
-                    console.log(this.store.series);
                 })
         }
     }
