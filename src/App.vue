@@ -37,8 +37,17 @@ export default {
 </script>
 
 <template>
-    <AppSearch @startSearch="getList" />
-    <div class="container">
-        <AppList />
-    </div>
+    <header>
+        <AppSearch @startSearch="getList" />
+    </header>
+    <main>
+        <div class="container">
+            <AppList />
+        </div>
+    </main>
+
 </template>
+
+<style lang="scss">
+@use "./styles/general.scss" as *;
+</style>

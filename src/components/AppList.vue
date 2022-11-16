@@ -17,7 +17,8 @@ export default {
 
 <template>
     <!-- FILM LIST -->
-    <div class="row">
+    <h3>FILM</h3>
+    <div class="row row-cols-4 g-4 p-2">
         <div class="col" v-for="movie in store.movies" :key="movie.id">
             <AppCard :item="movie" />
         </div>
@@ -25,7 +26,8 @@ export default {
     <!-- /FILM LIST -->
 
     <!-- SERIES LIST -->
-    <div class="row">
+    <h3>SERIES</h3>
+    <div class="row row-cols-4 g-3 p-2">
         <div class="col" v-for="serie in store.series" :key="serie.id">
             <AppCard :item="serie" />
         </div>
